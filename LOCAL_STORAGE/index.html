@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Storage Example</title>
+</head>
+<body>
+    <h1>Local Storage Example</h1>
+
+    <button onclick="setData()">Set Data</button>
+    <button onclick="getData()">Get Data</button>
+
+    <div id="result"></div>
+
+    <script>
+        // Function to set data in local storage
+        function setData() {
+            var data = "This is a sample value.";
+            localStorage.setItem("myData", data);
+            document.getElementById("result").textContent = "Data has been set in local storage.";
+        }
+
+        // Function to get data from local storage
+        function getData() {
+            var data = localStorage.getItem("myData");
+            if (data) {
+                document.getElementById("result").textContent = "Data from local storage: " + data;
+            } else {
+                document.getElementById("result").textContent = "No data found in local storage.";
+            }
+        }
+    </script>
+</body>
+</html>
