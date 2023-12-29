@@ -1,0 +1,29 @@
+<script>
+    (function () {
+    var originalOpen = XMLHttpRequest.prototype.open;
+    var originalSend = XMLHttpRequest.prototype.send;
+
+    XMLHttpRequest.prototype.open = function (method, url, async, user, password) {
+        // Add your custom logic here when the request is initiated
+        console.log('Ajax request initiated for:', url);
+        alert('Ajax request initiated for: ' + url);
+
+        // Call the original open method to proceed with the request
+        originalOpen.apply(this, arguments);
+    };
+
+    XMLHttpRequest.prototype.send = function (data) {
+        var self = this;
+
+        // Add your custom logic here when the response is received
+        this.addEventListener('load', function () {
+            console.log('Ajax response received for:', self.responseURL);
+            alert('Ajax response received for: ' + self.responseURL);
+        });
+
+        // Call the original send method to proceed with sending the data
+        originalSend.call(this, data);
+    };
+})();
+
+</script>
