@@ -1,0 +1,14 @@
+<script>
+    (function () {
+    var originalOpen = XMLHttpRequest.prototype.open;
+
+    XMLHttpRequest.prototype.open = function () {
+        // Add your custom logic here to handle the Ajax request event
+        alert("ajax request triggered");
+
+        // Call the original open method to proceed with the request
+        return originalOpen.apply(this, arguments);
+    };
+})();
+
+</script>
