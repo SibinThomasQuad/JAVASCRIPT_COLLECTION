@@ -1,0 +1,46 @@
+<script>
+    // Immediately Invoked Function Expression (IIFE)
+!function() {
+  // Function to detect the presence of developer tools
+  function detectDevTool(allow) {
+    // Validate and set a default value for the 'allow' parameter
+    if (isNaN(+allow)) allow = 100;
+    
+    // Measure the start time to validate built-in object tamper prevention
+    var start = +new Date();
+    debugger; // The debugger statement pauses execution and opens developer tools
+    var end = +new Date(); // Measure the end time
+    
+    // Check if the time difference is greater than the allowed duration
+    if (isNaN(start) || isNaN(end) || end - start > allow) {
+      // If true, alert that developer tools are detected
+      change_body_to_waring();
+    }
+  }
+
+  // Check if the browser supports attachEvent (for Internet Explorer)
+  if (window.attachEvent) {
+    // Check if the document is already in a complete or interactive state
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+      // If true, run the detection immediately
+      detectDevTool();
+      
+      // Attach events for continuous detection
+      window.attachEvent('onresize', detectDevTool);
+      window.attachEvent('onmousemove', detectDevTool);
+      window.attachEvent('onfocus', detectDevTool);
+      window.attachEvent('onblur', detectDevTool);
+    } else {
+      // If the document is not ready, use setTimeout to check continuously
+      setTimeout(argument.callee, 0);
+    }
+  } else {
+    // For modern browsers, attach event listeners for continuous detection
+    window.addEventListener('load', detectDevTool);
+    window.addEventListener('resize', detectDevTool);
+    window.addEventListener('mousemove', detectDevTool);
+    window.addEventListener('focus', detectDevTool);
+    window.addEventListener('blur', detectDevTool);
+  }
+}();
+</script>
