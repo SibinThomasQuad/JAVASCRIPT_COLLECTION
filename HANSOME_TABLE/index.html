@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Handsontable Example</title>
+
+  <!-- Handsontable CSS (you can replace the CDN link with a local file) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@11.1.0/dist/handsontable.full.min.css">
+
+  <!-- Handsontable JavaScript (you can replace the CDN link with a local file) -->
+  <script src="https://cdn.jsdelivr.net/npm/handsontable@11.1.0/dist/handsontable.full.min.js"></script>
+</head>
+<body>
+
+<div id="simpleHandsontable" style="width: 600px; height: 300px;"></div>
+
+<script>
+  // Data for the Handsontable grid
+  var data = [
+    ['John', 'Doe', 30, 'john@example.com'],
+    ['Jane', 'Doe', 25, 'jane@example.com'],
+    ['Bob', 'Smith', 35, 'bob@example.com']
+  ];
+
+  // Handsontable configuration
+  var hot = new Handsontable(document.getElementById('simpleHandsontable'), {
+    data: data,
+    rowHeaders: true,
+    colHeaders: ['First Name', 'Last Name', 'Age', 'Email'],
+    columns: [
+      { data: 'first_name' },
+      { data: 'last_name' },
+      { data: 'age', type: 'numeric' },
+      { data: 'email' }
+    ],
+    stretchH: 'all',
+    autoWrapRow: true,
+    height: 300,
+    contextMenu: true
+  });
+</script>
+
+</body>
+</html>
